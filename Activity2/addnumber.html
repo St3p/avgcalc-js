@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<h2><a href="../index.html">Average Calculator</a></h2>
+<link rel="stylesheet" href="mystyle.css">
+
+</head>
+
+<body>
+
+  <label for="result">Average</label> <br />
+  <input type="text" id="result" disabled=true /> <br />
+  <br />
+  <label for="addNum">Add Number:</label> <br />
+  <input type="text" id="addNum" name="addNum"/> <br />
+  <br />
+  <button type="button" onclick="average();">Calculate</button><br />
+  <br />
+  <button type="button" onclick="Erase();">Erase</button><br />
+  <br />
+  <button type="button" onclick="list();">Input Numbers</button><br />
+  <p id="demo"></p>
+
+
+  <script>
+  // Example of avg calc using class.
+
+  class  Ave{
+      constructor() {
+          this.num = [];
+      }
+      addNumber(newNumber) {
+          this.num.push(newNumber);
+      }
+
+      solve() {
+          if (this.num.length === 0) {
+              return 0;
+          }
+
+          var i;
+          var sum = 0;
+          for (i = 0; i < this.num.length; i++) {
+               sum += this.num[i];
+          }
+          return sum / this.num.length;
+      }
+      EraseAll() {
+        var len= this.num.length
+            this.num.splice(0, len);
+        }
+        listO(){
+          var i, text;
+          text = "<ol>";
+          for (i = 0; i < this.num.length; i++) {
+            var tree = this.num[i];
+            text = text + "<li>" + tree + "</li>" + "<br>";
+          }
+          text = text + "</ol>";
+          return text;
+        }
+
+    }
+
+
+var sumation = new Ave();
+
+
+  function average() {
+    var NewNumber = parseFloat(document.getElementById("addNum").value);
+    sumation.addNumber(NewNumber);
+    var result = sumation.solve();
+      document.getElementById("result").value = result;
+  }
+
+  function Erase(){
+    var NewNumber = parseFloat(document.getElementById("addNum").value);
+    var result = sumation.EraseAll();
+
+      document.getElementById("result").value = result;
+      document.getElementById("demo").innerHTML = result;  }
+
+  function list(){
+    var NewNumber = parseFloat(document.getElementById("addNum").value);
+    sumation.addNumber(NewNumber);
+    var result = sumation.listO();
+    document.getElementById("demo").innerHTML = result;
+  }
+
+
+</script>
+</body>
+</html>
