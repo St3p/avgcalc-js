@@ -21,7 +21,6 @@
   <br />
   <button type="button" onclick="Erase();">Erase</button><br />
   <br />
-  <button type="button" onclick="list();">Input Numbers</button><br />
   <p id="demo"></p>
 
 
@@ -49,18 +48,23 @@
           return sum / this.num.length;
       }
       EraseAll() {
-        var len= this.num.length
-            this.num.splice(0, len);
+        this.num = [" "];
+        return ;
         }
         listO(){
-          var i, text;
-          text = "<ol>";
-          for (i = 0; i < this.num.length; i++) {
-            var tree = this.num[i];
-            text = text + "<li>" + tree + "</li>" + "<br>";
+          var text = "<ol>";
+          var i= 0;
+          for (var x of this.num) {
+            var button = '<button type="button" onclick="sumation.TErase(' + i + ');">Erase</button>';
+            text = text + "<li>" + x + " " + button + "</li>" + "<br />" + "<br />";
+            i ++;
           }
           text = text + "</ol>";
           return text;
+        }
+        TErase (x){
+        console.log(x);
+        this.num.splice(1, x);
         }
 
     }
@@ -74,6 +78,8 @@ var sumation = new Ave();
     sumation.addNumber(NewNumber);
     var result = sumation.solve();
       document.getElementById("result").value = result;
+      var result2 = sumation.listO();
+      document.getElementById("demo").innerHTML = result2;
   }
 
   function Erase(){
@@ -81,14 +87,9 @@ var sumation = new Ave();
     var result = sumation.EraseAll();
 
       document.getElementById("result").value = result;
-      document.getElementById("demo").innerHTML = result;  }
+      document.getElementById("demo").innerHTML = result;
+    }
 
-  function list(){
-    var NewNumber = parseFloat(document.getElementById("addNum").value);
-    sumation.addNumber(NewNumber);
-    var result = sumation.listO();
-    document.getElementById("demo").innerHTML = result;
-  }
 
 
 </script>
